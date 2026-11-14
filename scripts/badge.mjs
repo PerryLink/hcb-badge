@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const pkg = process.argv[2];
 if (!pkg) { console.error('usage: node scripts/badge.mjs <package>'); process.exit(2); }
-const urls = ['https://raw.githubusercontent.com/PerryLink/dsh-compat-baseline/main/data/matrix.json','https://perrylink.github.io/dsh-compat-baseline/data/matrix.json'];
+const urls = ['https://raw.githubusercontent.com/PerryLink/hcb/main/data/matrix.json','https://perrylink.github.io/hcb/data/matrix.json'];
 let d = null; for (const u of urls) { try { const r = await fetch(u, { signal: AbortSignal.timeout(8000) }); if (r.ok) { d = await r.json(); break; } } catch {} }
 if (!d) { console.error('failed to fetch matrix'); process.exit(3); }
 const row = d.rows.find(r => r.name === pkg);
